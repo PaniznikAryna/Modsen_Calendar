@@ -95,49 +95,10 @@
 
 .eventBlock {
   position: absolute;
-  border-radius: 5px;
-  padding: 4px 8px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.eventTitle {
-  font-weight: 700;
-  font-size: 12px;
-}
-
-.eventDetail {
-  font-size: 10px;
-  color: rgba(107, 122, 153, 1);
-  display: flex;
-  justify-content: space-between;
-}
-.timeLabels {
-  display: flex;
-  gap: 10px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.timeLabel {
-  width: 35px;
-  height: 20px;
-  padding: 0 7px;
-  background: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(107, 122, 153, 0.3);
-  border-radius: 5px;
-  font-size: 10px;
-  line-height: 20px;
-  text-align: center;
-  color: rgba(107, 122, 153, 1);
-}
-
-.eventBlock {
-  position: absolute;
   display: flex;
   flex-direction: column;
   padding: 4px 8px;
+  box-sizing: border-box;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -145,7 +106,7 @@
 .timeLabels {
   display: flex;
   gap: 10px;
-  margin-bottom: 4px;
+  margin: 0; 
 }
 
 .timeLabel {
@@ -159,4 +120,10 @@
   line-height: 20px;
   text-align: center;
   color: rgba(107, 122, 153, 1);
+}
+
+.eventTitle {
+  font-weight: 700;
+  font-size: 12px;
+  margin: 0; 
 }

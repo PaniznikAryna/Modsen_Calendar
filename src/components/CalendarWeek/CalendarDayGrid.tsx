@@ -1,5 +1,5 @@
 import React, { useState, useEffect, type MouseEvent } from 'react'
-import styles from './CalendarGrid.module.scss'
+import styles from './CalendarGrid.module.scss'  // <-- исправленный импорт
 import TimeIcon from '@/assets/icons/time.png'
 
 export interface Event {
@@ -60,11 +60,10 @@ const CalendarDayGrid: React.FC<DayGridProps> = ({
   return (
     <div className={styles.gridWrapper}>
       <div className={styles.grid} style={{ gridTemplateColumns: '65px 1fr' }}>
-        <div className={styles.timeHeader} key="time-header">
+        <div className={styles.timeHeader}>
           <img src={TimeIcon} alt="Time" />
         </div>
-
-        <div className={styles.dayHeader} key={date.toDateString()}>
+        <div className={styles.dayHeader}>
           <span className={styles.weekday}>
             {date.toLocaleDateString('en-US', { weekday: 'long' })}
           </span>
@@ -72,7 +71,7 @@ const CalendarDayGrid: React.FC<DayGridProps> = ({
         </div>
 
         {hours.map(hour => (
-          <React.Fragment key={`row-${hour}`}>
+          <React.Fragment key={hour}>
             <div
               className={styles.timeCell}
               onClick={e => handleCellClick(e, hour)}
@@ -86,7 +85,7 @@ const CalendarDayGrid: React.FC<DayGridProps> = ({
           </React.Fragment>
         ))}
 
-        {visible.map((ev, idx) => {
+        {visible.map(ev => {
           const startFrac = ev.start.getHours() + ev.start.getMinutes() / 60
           const duration = (ev.end.getTime() - ev.start.getTime()) / 36e5
           const top = HEADER + startFrac * ROW
@@ -95,9 +94,22 @@ const CalendarDayGrid: React.FC<DayGridProps> = ({
           const width = `calc(100% - 65px)`
           const bgColor = getBackground(ev.color)
 
+          const startStr = ev.start.toLocaleTimeString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          })
+          const endStr = ev.end.toLocaleTimeString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          })
+
+          const showEnd = ev.end.getTime() - ev.start.getTime() > 3600e3
+
           return (
             <div
-              key={ev.id ?? `evt-${idx}`}
+              key={ev.id}
               className={styles.eventBlock}
               style={{
                 top,
@@ -110,18 +122,26 @@ const CalendarDayGrid: React.FC<DayGridProps> = ({
               onClick={e => handleEventClick(e, ev)}
             >
               <div className={styles.timeLabels}>
-                <div className={styles.timeLabel}>
-                  {ev.start.toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
+                <div
+                  className={styles.timeLabel}
+                  style={{
+                    background: ev.color,
+                    borderColor: ev.color,
+                    color: '#fff',
+                  }}
+                >
+                  {startStr}
                 </div>
-                {ev.end.getTime() - ev.start.getTime() > 3600e3 && (
-                  <div className={styles.timeLabel}>
-                    {ev.end.toLocaleTimeString('en-US', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
+                {showEnd && (
+                  <div
+                    className={styles.timeLabel}
+                    style={{
+                      background: ev.color,
+                      borderColor: ev.color,
+                      color: '#fff',
+                    }}
+                  >
+                    {endStr}
                   </div>
                 )}
               </div>
@@ -134,7 +154,6 @@ const CalendarDayGrid: React.FC<DayGridProps> = ({
       <div
         className={styles.currentLine}
         style={{ top: `${topLine}px` }}
-        key="current-line"
       />
     </div>
   )

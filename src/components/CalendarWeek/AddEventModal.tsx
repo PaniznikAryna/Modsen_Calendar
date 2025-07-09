@@ -1,3 +1,4 @@
+// src/components/AddEventModal/AddEventModal.tsx
 import React, { useState, useEffect, useRef, type MouseEvent } from 'react'
 import styles from './AddEventModal.module.scss'
 import PlaceIcon from '@/assets/icons/place.png'
@@ -67,30 +68,41 @@ const AddEventModal: React.FC<Props> = ({
     setTitle(initialData.title)
     setLocation(initialData.location)
     setDate(initialData.date.toISOString().slice(0, 10))
-    setStartTime(
-      `${initialData.start.toString().padStart(2, '0')}:00`
-    )
-    setEndTime(
-      `${initialData.end.toString().padStart(2, '0')}:00`
-    )
+    setStartTime(`${initialData.start.toString().padStart(2, '0')}:00`)
+    setEndTime(`${initialData.end.toString().padStart(2, '0')}:00`)
     setNotes(initialData.notes)
     setColor(initialData.color)
   }, [initialData])
 
-  const canSave = Boolean(title) && date && startTime < endTime
+  const errors: string[] = []
+  if (!title.trim()) errors.push('Требуется название')
+  else if (title.length > 20) errors.push('Не более 20 символов')
+
+  if (location.length > 20) errors.push('Не более 20 символов')
+
+  const dateDisplay = date.split('-').reverse().join('.')
+  if (!/^\d{2}\.\d{2}\.\d{4}$/.test(dateDisplay))
+    errors.push('Date format DD.MM.YYYY')
+
+  if (!/^\d{2}:\d{2}$/.test(startTime) || !/^\d{2}:\d{2}$/.test(endTime))
+    errors.push('Time format HH:MM – HH:MM')
+  else if (startTime >= endTime)
+    errors.push('Start must be before End')
+
+  const canSave = errors.length === 0
 
   const toggleDropdown = (e: MouseEvent) => {
     e.stopPropagation()
     setDropdownOpen(o => !o)
   }
 
-  const handleSave = () => {
+  const handleSaveClick = () => {
     const [h1, m1] = startTime.split(':').map(Number)
     const [h2, m2] = endTime.split(':').map(Number)
     onSave({
       id: initialData.id,
-      title,
-      location,
+      title: title.trim(),
+      location: location.trim(),
       date: new Date(date),
       start: h1 + m1 / 60,
       end: h2 + m2 / 60,
@@ -102,6 +114,7 @@ const AddEventModal: React.FC<Props> = ({
   return (
     <>
       <div className={styles.overlay} onClick={onCancel} />
+
       <div
         className={styles.modal}
         style={{ top: coords.y, left: coords.x }}
@@ -111,8 +124,9 @@ const AddEventModal: React.FC<Props> = ({
           <input
             className={styles.searchInput}
             type="text"
-            placeholder="Search Event..."
+            placeholder="Event title..."
             value={title}
+            maxLength={20}
             onChange={e => setTitle(e.target.value)}
           />
           <div className={styles.dropdown}>
@@ -151,6 +165,7 @@ const AddEventModal: React.FC<Props> = ({
             type="text"
             placeholder="Location"
             value={location}
+            maxLength={20}
             onChange={e => setLocation(e.target.value)}
           />
         </div>
@@ -168,6 +183,7 @@ const AddEventModal: React.FC<Props> = ({
               onChange={e => setDate(e.target.value)}
             />
           </div>
+
           <div
             className={styles.cell}
             onClick={() => startRef.current?.showPicker()}
@@ -193,14 +209,20 @@ const AddEventModal: React.FC<Props> = ({
           <img src={PenIcon} alt="Notes" />
           <textarea
             className={styles.notesInput}
-            placeholder="Add Notes"
+            placeholder="Add notes..."
             value={notes}
             onChange={e => setNotes(e.target.value)}
           />
         </div>
 
+        {errors.length > 0 && (
+          <div className={styles.errorMessage}>
+            {errors[0]}
+          </div>
+        )}
+
         <div className={styles.actions}>
-          {mode === 'edit' && onDelete && initialData.id && (
+          {mode === 'edit' && onDelete && (
             <button
               className={styles.delete}
               onClick={() => onDelete(initialData.id!)}
@@ -211,7 +233,7 @@ const AddEventModal: React.FC<Props> = ({
           <button
             className={styles.save}
             disabled={!canSave}
-            onClick={handleSave}
+            onClick={handleSaveClick}
           >
             Save
           </button>

@@ -99,11 +99,12 @@ const CalendarWeek: React.FC = () => {
   })
 
   const openCreate = useCallback(
-    (date: Date, hour: number, coords: { x: number; y: number }) =>
+    (date: Date, hour: number, coords: { x: number; y: number }) => {
       setModal({
         open: true,
         mode: 'create',
         data: {
+          id: crypto.randomUUID(),
           date,
           start: hour,
           end: hour + 1,
@@ -113,12 +114,13 @@ const CalendarWeek: React.FC = () => {
           color: 'rgba(255,102,51,1)',
         },
         coords,
-      }),
+      })
+    },
     []
   )
 
   const openEdit = useCallback(
-    (ev: Event, coords: { x: number; y: number }) =>
+    (ev: Event, coords: { x: number; y: number }) => {
       setModal({
         open: true,
         mode: 'edit',
@@ -133,7 +135,8 @@ const CalendarWeek: React.FC = () => {
           color: ev.color,
         },
         coords,
-      }),
+      })
+    },
     []
   )
 
@@ -145,12 +148,18 @@ const CalendarWeek: React.FC = () => {
 
     if (modal.mode === 'edit' && e.id) {
       setEvents(evts =>
-        evts.map(x => (x.id === e.id ? { ...x, ...e, start: s, end: f } : x))
+        evts.map(x =>
+          x.id === e.id ? { ...x, ...e, start: s, end: f } : x
+        )
       )
     } else {
-      const newId = crypto.randomUUID()
-      setEvents(evts => [...evts, { id: newId, ...e, start: s, end: f }])
+      const newId = e.id ?? crypto.randomUUID()
+      setEvents(evts => [
+        ...evts,
+        { id: newId, ...e, start: s, end: f },
+      ])
     }
+
     setModal(m => ({ ...m, open: false }))
   }
 

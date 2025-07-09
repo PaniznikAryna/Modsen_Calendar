@@ -98,8 +98,19 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
           )
           const left = 65 + dayIdx * 125 + 2
           const width = 118
-
           const bgColor = getBackground(ev.color)
+
+          const startStr = ev.start.toLocaleTimeString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          })
+          const endStr = ev.end.toLocaleTimeString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          })
+          const showEnd = ev.end.getTime() - ev.start.getTime() > 3600e3
 
           return (
             <div
@@ -115,21 +126,38 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
               }}
               onClick={e => handleEventClick(e, ev)}
             >
-              <div className={styles.eventTitle}>{ev.title}</div>
-              <div className={styles.eventDetail}>
-                {ev.location && <span>{ev.location}</span>}
-                <span>
-                  {ev.start.toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}{' '}
-                  –{' '}
-                  {ev.end.toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </span>
+              <div className={styles.timeLabels}>
+                <div
+                  className={styles.timeLabel}
+                  style={{
+                    background: ev.color,
+                    borderColor: ev.color,
+                    color: '#fff',
+                  }}
+                >
+                  {startStr}
+                </div>
+                {showEnd && (
+                  <div
+                    className={styles.timeLabel}
+                    style={{
+                      background: ev.color,
+                      borderColor: ev.color,
+                      color: '#fff',
+                    }}
+                  >
+                    {endStr}
+                  </div>
+                )}
               </div>
+
+              <div className={styles.eventTitle}>{ev.title}</div>
+
+              {ev.location && (
+                <div className={styles.eventDetail}>
+                  {ev.location}
+                </div>
+              )}
             </div>
           )
         })}
@@ -138,7 +166,6 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
       <div
         className={styles.currentLine}
         style={{ top: `${topLine}px` }}
-        key="current-line"
       />
     </div>
   )

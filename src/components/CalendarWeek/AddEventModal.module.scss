@@ -1,7 +1,7 @@
 .modal {
   position: fixed;               
   width: 440px;
-  height: 322px;
+  height: 370px;
   padding: 20px;
   display: grid;
   grid-template-rows:
@@ -140,7 +140,7 @@ input[type="time"] {
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   column-gap: 8px;
   margin-top: 8px;
   margin-bottom: 20px;
@@ -178,4 +178,10 @@ input[type="time"] {
   bottom: 0;
   background: rgba(0,0,0,0.2);
   z-index: 999;
+}
+.errorMessage {
+  text-align: center;
+  color: rgba(171, 0, 0, 1);
+  font-size: 12px;
+  margin: 0 auto 8px;
 }

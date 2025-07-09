@@ -1,0 +1,136 @@
+.sidebar {
+//   position: absolute;   
+  top: 40px;
+//   left: 66px;
+
+  width: 250px;
+  height: 1000px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 30px;
+//   margin-left: 68px;
+
+  .avatar {
+    // width: 145px;
+    // height: 130px;
+    width: auto;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+  }
+
+  .name {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba(107, 122, 153, 1);
+    padding-top: 40px;
+    padding-bottom: 5px;
+    margin: 0;
+  }
+
+  .email {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 25px;
+    color: rgba(173, 184, 204, 1);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// .card {
+//   width: 140px;
+//   height: 140px !important;
+//   background: #ffffff;
+//   border-radius: 15px;
+//   box-shadow: 0 10px 30px rgba(38, 51, 77, 0.03);
+//   margin-left: 68px;
+
+//   display: flex;
+//   flex-direction: column;   
+//   align-items: center;      
+//   justify-content: center;  
+// //   gap: 12px;                
+// //   margin-bottom: 24px;
+// }
+
+.card {
+  margin-left: 0;
+  align-self: center;
+  width: 140px;
+  height: 140px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(38, 51, 77, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cardDot {
+  width: 7px;
+  height: 7px;
+  margin-left: 63px;
+  background: rgba(255, 102, 51, 1);
+  border-radius: 50%;
+}
+
+.cardIcon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.cardText {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(107, 122, 153, 1);
+  text-align: center;
+}
+
+.promo {
+  text-align: center;
+margin-bottom: 0px;
+margin-top: 329px;
+margin-left: 5px;
+  .promoImg {
+    width: 248px;
+    height: 49px;
+    object-fit: contain;
+  }
+
+  .promoText {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(27, 22, 87, 0.6);
+    margin-top: 25px;
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 16px; 
+  margin-top: 35px; 
+  text-align: start;
+//   margin-left: 5px;
+  .socialIcon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+}

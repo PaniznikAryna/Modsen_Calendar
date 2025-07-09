@@ -1,0 +1,31 @@
+.panel {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 80px;
+}
+
+.title {
+  color: rgba(14, 74, 103, 1);
+  font-weight: 700;
+  margin: 0 0 16px 0;
+}
+
+.subText {
+  color: rgba(55, 103, 126, 1);
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0 0 24px 0;
+}
+
+.link {
+  color: rgba(254, 114, 76, 1);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.headerWrapper {
+  margin-top: 203px;
+}

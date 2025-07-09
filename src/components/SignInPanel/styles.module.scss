@@ -1,0 +1,37 @@
+.panel {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 90px;
+  padding-top: 100px;
+}
+
+.title {
+  color: rgba(14, 74, 103, 1);
+  font-weight: 700;     
+  margin: 0px 0;        
+}
+
+.subText {
+  color: rgba(55, 103, 126, 1);
+  font-weight: 400;     
+  font-size: 14px;
+  margin: 8px 0 24px;    
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.footerText {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(55, 103, 126, 1);
+}
+
+.link {
+  color: rgba(254, 114, 76, 1);
+  text-decoration: none;
+  margin-left: 4px;
+}
+

@@ -1,0 +1,162 @@
+.gridWrapper {
+  position: relative;
+  flex: 1;
+  overflow: visible;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 65px repeat(7, 125px);
+  grid-auto-rows: 68px;
+}
+
+.timeHeader {
+  background: #fff;
+  border-bottom: 1px solid rgba(245, 246, 247, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeHeader img {
+  width: 30px;
+  height: 30px;
+}
+
+.dayHeader {
+  background: #fff;
+  border-left: 1px solid rgba(245, 246, 247, 1);
+  border-bottom: 1px solid rgba(245, 246, 247, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  color: rgba(107, 122, 153, 1);
+}
+
+.weekday {
+  font-size: 12px;
+}
+
+.date {
+  margin-top: 4px;
+  font-size: 14px;
+  color: rgba(107, 122, 153, 1);
+}
+
+.timeCell {
+  border-bottom: 1px solid rgba(245, 246, 247, 1);
+  border-right: 1px solid rgba(245, 246, 247, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  color: rgba(107, 122, 153, 1);
+  cursor: pointer;
+}
+
+.dayCell {
+  border-bottom: 1px solid rgba(245, 246, 247, 1);
+  border-right: 1px solid rgba(245, 246, 247, 1);
+  cursor: pointer;
+}
+
+.currentLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 102, 51, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.currentLine::before,
+.currentLine::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 102, 51, 1);
+  top: -4px;
+}
+
+.currentLine::before {
+  left: -5px;
+}
+
+.currentLine::after {
+  right: -5px;
+}
+
+.eventBlock {
+  position: absolute;
+  border-radius: 5px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.eventTitle {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.eventDetail {
+  font-size: 10px;
+  color: rgba(107, 122, 153, 1);
+  display: flex;
+  justify-content: space-between;
+}
+.timeLabels {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.timeLabel {
+  width: 35px;
+  height: 20px;
+  padding: 0 7px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(107, 122, 153, 0.3);
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(107, 122, 153, 1);
+}
+
+.eventBlock {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.timeLabels {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.timeLabel {
+  width: 35px;
+  height: 20px;
+  padding: 0 7px;
+  background: #fff;
+  border: 1px solid rgba(107, 122, 153, 0.3);
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(107, 122, 153, 1);
+}

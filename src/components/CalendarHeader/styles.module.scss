@@ -1,0 +1,15 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+  box-sizing: border-box;
+  padding-top: 35px;
+  padding-right: 72px;
+  background-color: rgba(247, 248, 250, 1);
+}
+
+.image {
+  height: 50px;
+  display: block;
+}

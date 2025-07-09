@@ -1,0 +1,87 @@
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-bottom: 2px solid rgba(245, 246, 247, 1);
+}
+
+.todayBtn {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 73px;
+  height: 40px;
+  border: 2px solid rgba(245, 246, 247, 1);
+  border-radius: 20px;
+  background: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(107, 122, 153, 1);
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrowBtn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(245, 246, 247, 1);
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  color: rgba(107, 122, 153, 1);
+  font-weight: 700;
+}
+
+.range {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(107, 122, 153, 1);
+}
+
+.viewToggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  width: 121px;
+  height: 40px;
+  border: 2px solid rgba(245, 246, 247, 1);
+  border-radius: 20px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.toggleBtn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(173, 184, 204, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toggleBtn:first-child {
+  border-right: 1px solid rgba(245, 246, 247, 1);
+}
+
+.active {
+  color: rgba(107, 122, 153, 1);
+}
